@@ -1,4 +1,4 @@
-package com.lanseudesu.pokemon;
+package com.lanseudesu.pokemon.move;
 
 public enum MoveCategory {
     PHYSICAL,

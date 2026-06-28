@@ -8,6 +8,14 @@ public class Pokemon {
     private int currentHp;
 
     public Pokemon(String name, Type[] types, Stats stats, int level){
+        if (types == null || types.length < 1 || types.length > 2) {
+            throw new IllegalArgumentException("A Pokemon must have 1 or 2 types.");
+        }
+
+        if (types.length == 2 && types[0] == types[1]) {
+            throw new IllegalArgumentException("A Pokemon cannot have duplicate types.");
+        }
+
         this.name = name;
         this.types = types;
         this.stats = stats;

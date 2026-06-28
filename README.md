@@ -11,6 +11,7 @@ A Java-based turn-based battle engine inspired by Pokémon battles, built to pra
 ### Core Combat
 - [X] Basic Accuracy roll
 - [X] DamageCalc
+- [ ] Turn system
 - [ ] Pokemon HP
 - [ ] Damage application
 

@@ -1,4 +1,5 @@
-package com.lanseudesu.pokemon;
+package com.lanseudesu.pokemon.move;
+import com.lanseudesu.pokemon.Battle;
 import com.lanseudesu.pokemon.pokemon.Pokemon;
 import com.lanseudesu.pokemon.pokemon.Type;
 import com.lanseudesu.pokemon.pokemon.TypeChart;
@@ -24,6 +25,18 @@ public class Move {
         this.pp = pp;
     }
 
+    public MoveCategory getCategory(){
+        return category;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public int getBasePower(){
+        return basePower;
+    }
+
     public void execute(Battle battle){
         Pokemon attacker = battle.getAttacker();
         Pokemon defender = battle.getDefender();
@@ -41,8 +54,8 @@ public class Move {
         }
 
         // check type based condition
-        if (isImmune(defender)) {
-            System.out.println("It doesn't affect " + defender.getName());
+        if (TypeChart.isImmune(type, defender.getTypes())) {
+            System.out.println("It doesn't affect " + defender.getName() + "...");
             return;
         }
 
@@ -60,29 +73,8 @@ public class Move {
 
     }
 
-    private boolean isImmune(Pokemon defender) {
-        for (Type t : defender.getTypes()) {
-            if (TypeChart.isImmune(type, t)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     private void applyDamage(Pokemon attacker, Pokemon defender) {
-        int attack;
-        int defense;
-
-        if (category == MoveCategory.PHYSICAL) {
-            attack = attacker.getStats().getAttack();
-            defense = defender.getStats().getDefense();
-        } else {
-            attack = attacker.getStats().getSpAttack();
-            defense = defender.getStats().getSpDefense();
-        }
-
-        int damage = DamageCalculator.calculate(basePower, attacker.getLevel(), attack, defense);
+        int damage = DamageCalculator.calculate(attacker, defender, this);
 
         defender.takeDamage(damage);
 

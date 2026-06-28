@@ -1,5 +1,7 @@
 package com.lanseudesu.pokemon;
 
+import com.lanseudesu.pokemon.move.Move;
+import com.lanseudesu.pokemon.move.MoveCategory;
 import com.lanseudesu.pokemon.pokemon.Pokemon;
 import com.lanseudesu.pokemon.pokemon.Stats;
 import com.lanseudesu.pokemon.pokemon.Type;
@@ -12,10 +14,9 @@ public class Main {
 
         Stats eeveeStats = new Stats(115, 60, 55, 50, 70, 60);
         Pokemon eevee =
-                new Pokemon("Eevee", new Type[]{Type.NORMAL}, eeveeStats, 50);
+                new Pokemon("Eevee", new Type[]{Type.WATER, Type.FLYING} , eeveeStats, 50);
 
-        Battle battle =
-                new Battle(pikachu, eevee);
+        Battle battle = new Battle(pikachu, eevee);
         Move thunder =
                 new Move("Thunder", Type.ELECTRIC, MoveCategory.SPECIAL,70, 110, 10);
 
