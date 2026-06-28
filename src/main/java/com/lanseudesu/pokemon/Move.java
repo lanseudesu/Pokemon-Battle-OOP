@@ -8,15 +8,19 @@ import java.util.Random;
 public class Move {
     private String name;
     private Type type;
+    private MoveCategory category;
     private int accuracy;
+    private int basePower;
     private int pp;
 
     private Random random = new Random();
 
-    public Move(String name, Type type, int accuracy, int pp){
+    public Move(String name, Type type,  MoveCategory category, int accuracy, int basePower, int pp){
         this.name = name;
         this.type = type;
+        this.category = category;
         this.accuracy = accuracy;
+        this.basePower = basePower;
         this.pp = pp;
     }
 
@@ -47,11 +51,13 @@ public class Move {
 
         if (roll <= accuracy) {
             System.out.println(name + " hit!");
+            applyDamage(attacker, defender);
         } else {
             System.out.println(name + " missed!");
         }
 
         pp--;
+
     }
 
     private boolean isImmune(Pokemon defender) {
@@ -62,5 +68,25 @@ public class Move {
         }
 
         return false;
+    }
+
+    private void applyDamage(Pokemon attacker, Pokemon defender) {
+        int attack;
+        int defense;
+
+        if (category == MoveCategory.PHYSICAL) {
+            attack = attacker.getStats().getAttack();
+            defense = defender.getStats().getDefense();
+        } else {
+            attack = attacker.getStats().getSpAttack();
+            defense = defender.getStats().getSpDefense();
+        }
+
+        int damage = DamageCalculator.calculate(basePower, attacker.getLevel(), attack, defense);
+
+        defender.takeDamage(damage);
+
+        System.out.println(defender.getName() + " took " + damage + " damage.");
+        System.out.println(defender.getName() + " HP: " + defender.getCurrentHp());
     }
 }

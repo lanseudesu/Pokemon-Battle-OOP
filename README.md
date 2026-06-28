@@ -6,18 +6,17 @@ A Java-based turn-based battle engine inspired by Pokémon battles, built to pra
 
 ---
 
-## Current Features
+## TODO
 
-* Pokémon entities with configurable data
-* Battle state management
-* Move execution system
-* Move PP tracking
-* Accuracy checks
-* Type immunity validation
+### Core Combat
+- [X] Basic Accuracy roll
+- [X] DamageCalc
+- [ ] Pokemon HP
+- [ ] Damage application
 
-    * Normal → Ghost
-    * Ground → Flying
-* Basic battle logging through console output
+### Future
+- [ ] Effect system
+- [ ] Status conditions
 
 ---
 

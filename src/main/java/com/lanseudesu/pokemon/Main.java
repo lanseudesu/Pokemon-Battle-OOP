@@ -1,20 +1,24 @@
 package com.lanseudesu.pokemon;
 
 import com.lanseudesu.pokemon.pokemon.Pokemon;
+import com.lanseudesu.pokemon.pokemon.Stats;
 import com.lanseudesu.pokemon.pokemon.Type;
 
 public class Main {
     public static void main(String[] args) {
+        Stats pikachuStats = new Stats(95, 60, 45, 55, 55, 95);
         Pokemon pikachu =
-                new Pokemon("Pikachu", new Type[]{Type.ELECTRIC});
-        Pokemon gengar =
-                new Pokemon("Gengar", new Type[]{Type.GHOST});
+                new Pokemon("Pikachu", new Type[]{Type.ELECTRIC}, pikachuStats, 50);
+
+        Stats eeveeStats = new Stats(115, 60, 55, 50, 70, 60);
+        Pokemon eevee =
+                new Pokemon("Eevee", new Type[]{Type.NORMAL}, eeveeStats, 50);
 
         Battle battle =
-                new Battle(pikachu, gengar);
-        Move tackle =
-                new Move("Tackle", Type.NORMAL, 95, 35);
+                new Battle(pikachu, eevee);
+        Move thunder =
+                new Move("Thunder", Type.ELECTRIC, MoveCategory.SPECIAL,70, 110, 10);
 
-        tackle.execute(battle);
+        thunder.execute(battle);
     }
 }

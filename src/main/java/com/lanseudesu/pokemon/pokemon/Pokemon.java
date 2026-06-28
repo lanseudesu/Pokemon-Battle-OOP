@@ -3,10 +3,16 @@ package com.lanseudesu.pokemon.pokemon;
 public class Pokemon {
     private String name;
     private Type[] types;
+    private Stats stats;
+    private int level;
+    private int currentHp;
 
-    public Pokemon(String name, Type[] types){
+    public Pokemon(String name, Type[] types, Stats stats, int level){
         this.name = name;
         this.types = types;
+        this.stats = stats;
+        this.level = level;
+        this.currentHp = stats.getHp();
     }
 
     public String getName(){
@@ -15,5 +21,25 @@ public class Pokemon {
 
     public Type[] getTypes(){
         return types;
+    }
+
+    public Stats getStats() {
+        return stats;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getCurrentHp(){
+        return currentHp;
+    }
+
+    public void takeDamage(int damage) {
+        currentHp -= damage;
+
+        if (currentHp < 0) {
+            currentHp = 0;
+        }
     }
 }
